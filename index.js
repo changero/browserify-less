@@ -20,11 +20,27 @@ module.exports = function(file, opts) {
         lessOpts.filename = file;
         lessOpts.paths = [path.dirname(file)];
 
+        let createFile = (css)=>{
+            if(opts.autoprefixer){
+                const postcss = require('postcss');
+                const autoprefixer = require('autoprefixer');
+
+                postcss([autoprefixer]).process(css).then(result=>{
+                    fs.writeFileSync(path.resolve(opts.output,filename),result.css)
+                })
+            }
+            else{
+             fs.writeFileSync(path.resolve(opts.output,filename),css)
+            }
+
+        }
+
         less.render(input, lessOpts, function(err, output) {
             if (err) {
                 self.emit('error', new Error(err.message + ': ' + err.filename + '(' + err.line + ')'));
             } else {
-                fs.writeFileSync(path.resolve(opts.output,filename),output.css)
+                //
+                createFile(output.css);
             }
 
             output.imports.forEach(function(f) {

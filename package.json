@@ -1,6 +1,6 @@
 {
-  "name": "browserify-less",
-  "version": "1.0.0",
+  "name": "browserify-lessify",
+  "version": "1.0.1",
   "description": "a browserify transform",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/changero/browserify-less#readme",
   "dependencies": {
+    "autoprefixer": "^6.7.7",
     "less": "^2.7.2",
+    "postcss": "^5.2.17",
     "through": "^2.3.8"
   },
   "devDependencies": {

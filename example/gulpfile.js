@@ -12,7 +12,8 @@ gulp.task('test',()=>{
     return b({
         entries:[path.resolve(__dirname,'js/test.js')]
     }).transform(less,{
-        output:path.resolve(__dirname,'../dist')
+        output:path.resolve(__dirname,'../dist'),
+        autoprefixer:true
     }).bundle()
         .pipe(source(name))
         .pipe(gulp.dest(path.resolve(__dirname,'../dist')))
